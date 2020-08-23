@@ -5,6 +5,7 @@ var tabs = 0;
 var collapseD = false;
 var cardinals = 0;
 var cardinalGain = 0;
+var visitedBefore = false;
 setInterval(update, 100);
 function openTab() {
   ramLeft -= ramTab;
@@ -12,8 +13,8 @@ function openTab() {
 }
 function update() {
   get("ramLeft").innerHTML = (ramLeft >= 1000) ? `${ramLeft / 1000}kB` : `${ramLeft}B`;
-  get("tabsOpen").innerHTML = `${tabs} tabs`;
-  cardinalGain = Math.log10(ramTotal).toFixed(0);
+  get("tabs").innerHTML = `${tabs} tabs`;
+  cardinalGain = (Math.log10(ramTotal) / 3).toFixed(0);
   if (ramLeft <= 0 && !collapseD) {
     collapse();
   }
@@ -41,7 +42,7 @@ function uncollapse() {
 function get(id) {
   return document.getElementById(id);
 }
-var listofstuff = ["ramLeft", "ramTotal", "ramTab", "tabs", "collapseD", "cardinals", "cardinalGain"];
+var listofstuff = ["ramLeft", "ramTotal", "ramTab", "tabs", "collapseD", "cardinals", "cardinalGain", "visitedBefore"];
 var saveload = {
   save: function() {
     listofstuff.forEach(x => localStorage.setItem(x, JSON.stringify(window[x])));
@@ -67,7 +68,7 @@ var saveload = {
     setInterval(saveload.save, 5000);
   },
   wipeSave: function() {
-    let listofdefault = [1000, 1000, 50, 0, false, 0, 0];
+    let listofdefault = [1000, 1000, 50, 0, false, 0, 0, false];
     for (i = 0; i <= listofdefault.length; i++) {
       window[listofstuff[i]] = listofdefault[i];
     }
