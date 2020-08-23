@@ -20,14 +20,20 @@ function update() {
   }
 }
 function collapse() {
-  get("openTab").style.display = "none";
-  document.body.style.backgroundColor = "black";
-  let collapsed = document.createElement("p");
-  let collapseText = document.createTextNode("YOU HAVE COLLAPSED!");
-  collapsed.appendChild(collapseText);
-  collapsed.setAttribute("style", "color: lime; font-size: 175px; font-family: Comic Sans MS");
-  collapsed.setAttribute("id", "collapseText");
-  document.body.insertBefore(collapsed, get("ramLeft"));
+  if (!get("collapseText")) {
+    get("openTab").style.display = "none";
+    document.body.style.backgroundColor = "black";
+    let collapsed = document.createElement("p");
+    let collapseText = document.createTextNode("YOU HAVE COLLAPSED!");
+    collapsed.appendChild(collapseText);
+    collapsed.setAttribute("style", "color: lime; font-size: 175px; font-family: Comic Sans MS");
+    collapsed.setAttribute("id", "collapseText");
+    document.body.insertBefore(collapsed, get("ramLeft"));
+  } else {
+    get("openTab").style.display = "none";
+    document.body.style.backgroundColor = "black";
+    get("collapseText").style.display = "block";
+  }
   collapseD = true;
   setTimeout(uncollapse, 3000);
 }
@@ -42,7 +48,11 @@ function uncollapse() {
 }
 
 function get(id) {
-  return document.getElementById(id);
+  if (document.getElementById(id) != undefined) {
+    return document.getElementById(id);
+  } else {
+    return false;
+  }
 }
 var listofstuff = ["ramLeft", "ramTotal", "ramTab", "tabs", "collapseD", "cardinals", "cardinalGain", "visitedBefore"];
 var saveload = {
