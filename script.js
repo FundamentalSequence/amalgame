@@ -29,7 +29,7 @@ function collapse() {
   collapsed.setAttribute("id", "collapseText");
   document.body.insertBefore(collapsed, get("ramLeft"));
   collapseD = true;
-  setTimeout(uncollapse(), 3000);
+  setTimeout(uncollapse, 3000);
 }
 function uncollapse() {
   cardinals += cardinalGain;
@@ -37,6 +37,8 @@ function uncollapse() {
   document.body.style.backgroundColor = "white";
   ramLeft = ramTotal;
   collapseD = false;
+  tabs = 0;
+  get("openTab").style.display = "block";
 }
 
 function get(id) {

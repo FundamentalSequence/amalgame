@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Saving the game (and autosaving/loading)
 
+### Fixed
+- Collapse being horribly broken
+
 ## [0.1.0] - 2020-08-22
 ### Added
 - RAM from [Reinhardt-C](https://github.com/Reinhardt-C)
