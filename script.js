@@ -57,6 +57,7 @@ function update() {
   get("tabs").innerHTML = `${tabs} tabs`;
   get("ramTab").innerHTML = `${ramTab}B/tab`;
   get("cardNum").innerHTML = `${cardinals} cardinals`;
+  get("bs").innerHTML = `${bought[0] + (bought[1] * 5) * ramTab}B/s`;
   if (ramLeft <= 0 && !collapsing) {
     collapse();
   }

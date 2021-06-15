@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.3] - 2021-06-15
+## Added
+- A byte/second counter to see how fast your RAM is being used
+
 ## [0.2.2] - 2021-06-15
 ## Added
 - The autobuy upgrade
