@@ -6,12 +6,24 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <!-- <div>
-      <button> blah
-    </div> -->
-    <p id="ramLeft">1kB</p>
-    <p id="ramTab">50B/tab</p>
-    <p id="tabs">0 tabs</p>
-    <button onclick="openTab()" id="openTab">Open a Tab</button>
+    <div id="menuB">
+      <button onclick="openSection('ramMenu')" id="ramMenuOp">RAM</button>
+      <button onclick="openSection('cardMenu')" id="cardMenuOp">Cardinals</button>
+    </div>
+    <div class="menu" id="ramMenu">
+      <p id="ramLeft">1MB</p>
+      <p id="ramTab">50B/tab</p>
+      <p id="tabs">0 tabs</p>
+      <button onclick="openTab()" id="openTab">Open a Tab</button>
+      <button onclick="shop(0, 0)" id="auto0">New Tab Button (10 tabs) (0x)</button>
+      <button onclick="shop(1, 0)" id="auto1">Ctrl+T (1k tabs) (0x)</button>
+    </div>
+    <div class="menu" id="cardMenu">
+      <p id="cardNum">0 cardinals</p>
+      <button onclick="shop(0, 1)" id="cardUp0">Decrease RAM (1 cardinal)</button>
+      <button onclick="shop(1, 1)" id="cardUp1">Increase tab RAM (1 cardinal)</button>
+      <button onclick="shop(2, 1)" id="cardUp2">Decrease prices (1 cardinal)</button>
+    </div>
+    <div id="a"></div>
   </body>
 </html>

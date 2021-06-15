@@ -1,0 +1,18 @@
+#ramMenuOp {
+  background-color: darkgray;
+  border-radius: 8px;
+}
+#cardMenuOp {
+  background-color: rgb(12, 136, 39);
+  border-radius: 8px;
+  display: none;
+}
+#cardMenu {
+  display: none;
+}
+#auto0 {
+  display: none;
+}
+#auto1 {
+  display: none;
+}

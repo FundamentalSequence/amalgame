@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2021-06-15
+### Added
+- Cardinal gain when collapsing
+- Cardinal menu
+- Upgrades using cardinals
+
+### Changed
+- The amount of starting RAM (1kB -> 1MB)
+
 ## [0.1.2] - 2020-08-23
 ### Fixed
 - Collapsing a 2nd+ time causing a broken game
@@ -20,7 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2020-08-22
 ### Added
 - RAM from [Reinhardt-C](https://github.com/Reinhardt-C)
-- whattheburger from [DaveRainbowin](https://github.com/DaveRainbowin)
 - Ordinal Markup from [PatcailMemer](https://github.com/PatcailMemer)
 
 ### Fixed
