@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2021-06-15
+## Added
+- The autobuy upgrade
+
+## Changed
+- Starting RAM (1MB -> 5MB)
+
+## Fixed
+- Collapsing making all cardinal upgrades have price of undefined
+
 ## [0.2.1] - 2021-06-15
 ### Fixed
 - The first time game loading in wrong data

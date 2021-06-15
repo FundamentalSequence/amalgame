@@ -1,19 +1,21 @@
-var ramLeft = 1000000;
-var ramTotal = 1000000;
+var ramLeft = 5000000;
+var ramTotal = 5000000;
 var ramTab = 50;
 var tabs = 0;
 var tabsCollapse = 0;
 var collapsing = false;
 var collapsedNum = 0;
 var cardinals = 0;
+var totCard = 0;
 var cardinalGain = 1;
 var visitedBefore = false;
 var shopCost = [10, 1000, 1, 1, 1];
 var bought = [0, 0, 0, 0, 0];
+var autobuyer = false;
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
-var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought"];
-var defaultList = [1000000, 1000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0]];
+var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard"];
+var defaultList = [5000000, 5000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0];
 var saveload = {
   save: function() {
     saveList.forEach(x => window.localStorage.setItem(x, JSON.stringify(window[x])));
@@ -67,6 +69,19 @@ function update() {
   if (collapsedNum >= 1) {
     get("cardMenuOp").style.display = "inline";
   }
+  if (cardinals >= 100) {
+    get("cardAutoBuy").style.display = "block";
+  }
+  if (autobuyer) {
+    while (tabs >= shopCost[0]) {
+      shop(0, 0);
+    }
+    while (tabs >= shopCost[1]) {
+      shop(1, 0);
+    }
+    get("cardAutoBuy").style.backgroundColor = "lime";
+    get("cardAutoBuy").innerHTML = `Autobuy tab-openers (Bought)`;
+  }
   get("auto0").innerHTML = `New Tab Button (${shopCost[0]} tabs) (${bought[0]}x)`;
   get("auto1").innerHTML = `Ctrl+T (${shopCost[1]/1000}k tabs) (${bought[1]}x)`;
   get("cardUp0").innerHTML = `Decrease RAM (${shopCost[2]} ${shopCost[2] > 1 ? "cardinals" : "cardinal"})`;
@@ -84,7 +99,7 @@ function shop(num, sect) {
       bought[0]++;
     }
     if (num == 1 && tabs >= shopCost[1]) {
-      tabs -= shopCost[0];
+      tabs -= shopCost[1];
       shopCost[1] = Math.ceil(shopCost[1] * 1.33);
       bought[1]++;
     }
@@ -106,14 +121,24 @@ function shop(num, sect) {
       shopCost[0] = Math.ceil(shopCost[0] * 0.9);
       shopCost[1] = Math.ceil(shopCost[1] * 0.9);
     }
+    if (num == 3 && cardinals >= 100 && !autobuyer) {
+      cardinals -= 100;
+      get("cardAutoBuy").style.backgroundColor = "lime";
+      autobuyer = true;
+    }
   }
 }
 function collapse() {
-  if (!get("collapseText")) {
-    collapsedNum++;
-    cardinals += cardinalGain;
-    bought = [0, 0];
-    shopCost = [10, 1000];
+  collapsedNum++;
+  cardinals += cardinalGain;
+  bought[0] = 0;
+  bought[1] = 0;
+  shopCost[0] = 10;
+  shopCost[1] = 1000;
+  ramLeft = ramTotal;
+  tabs = 0;
+  tabsCollapse = 0;
+  if (!get("collapseText") && totCard <= 100) {
     document.body.style.backgroundColor = "black";
     openSection("a");
     get("menuB").style.display = "none";
@@ -123,27 +148,22 @@ function collapse() {
     collapsed.setAttribute("style", "color: lime; font-size: 175px; font-family: Comic Sans MS");
     collapsed.setAttribute("id", "collapseText");
     document.body.insertBefore(collapsed, get("ramMenu"));
-  } else {
-    collapsedNum++;
-    cardinals += cardinalGain;
+  } else if (totCard <= 100) {
     openSection("a");
     get("menuB").style.display = "none";
-    bought = [0, 0];
-    shopCost = [10, 1000];
     document.body.style.backgroundColor = "black";
     get("collapseText").style.display = "block";
   }
-  collapsing = true;
-  setTimeout(uncollapse, 3000);
+  if (totCard <= 100) {
+    collapsing = true;
+    setTimeout(uncollapse, 3000);
+  }
 }
 function uncollapse() {
   get("collapseText").style.display = "none";
   get("menuB").style.display = "block";
   document.body.style.backgroundColor = "white";
-  ramLeft = ramTotal;
   collapsing = false;
-  tabs = 0;
-  tabsCollapse = 0;
   openSection("ramMenu");
   if (collapsedNum == 1) {
     get("cardMenuOp").style.display = "block";
