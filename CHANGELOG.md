@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.3] - 2021-06-16
+### Added
+- Dark theme (but you can't switch themes in-game)
+
 ## [0.3.2] - 2021-06-15
 ### Fixed
 - Buying decrease upgrade too much causes scaling to go below 0 (ie. prices fall after buying)
