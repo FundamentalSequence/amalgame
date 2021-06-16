@@ -46,6 +46,9 @@ var saveload = {
     for (x = 0; x < saveList.length; x++) {
       window[saveList[x]] = defaultList[x];
     }
+  },
+  fix: function() {
+    // fix
   }
 };
 setTimeout(saveload.init, 500);
@@ -156,7 +159,7 @@ function collapse() {
   tabsCollapse = 0;
   if (!get("collapseText") && totCard <= 100) {
     document.body.style.backgroundColor = "black";
-    openSection("a");
+    openSection("cardMenu");
     get("menuB").style.display = "none";
     let collapsed = document.createElement("p");
     let collapseText = document.createTextNode("YOU HAVE COLLAPSED!");
@@ -165,7 +168,7 @@ function collapse() {
     collapsed.setAttribute("id", "collapseText");
     document.body.insertBefore(collapsed, get("ramMenu"));
   } else if (totCard <= 100) {
-    openSection("a");
+    openSection("cardMenu");
     get("menuB").style.display = "none";
     document.body.style.backgroundColor = "black";
     get("collapseText").style.display = "block";

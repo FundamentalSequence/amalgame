@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.4] - 2021-06-16
+### Added
+- Options menu
+
 ## [0.3.3] - 2021-06-16
 ### Added
 - Dark theme (but you can't switch themes in-game)

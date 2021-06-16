@@ -3,16 +3,20 @@ body {
   color: white;
   font-family: sans-serif;
 }
+button {
+  border-radius: 8px;
+}
 #ramMenuOp {
   background-color: darkgray;
-  border-radius: 8px;
 }
 #cardMenuOp {
   background-color: rgb(12, 136, 39);
-  border-radius: 8px;
   display: none;
 }
 #cardMenu {
+  display: none;
+}
+#optionsMenu {
   display: none;
 }
 #auto0 {
