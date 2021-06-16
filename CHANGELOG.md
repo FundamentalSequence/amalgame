@@ -6,8 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2021-06-15
+### Fixed
+- Buying decrease upgrade too much causes scaling to go below 0 (ie. prices fall after buying)
+
+### Changed
+- Starting RAM (5MB -> 2MB)
+
 ## [0.3.1] - 2021-06-15
-## Fixed
+### Fixed
 - The price decrease upgrade (now it decreases the scaling factor instead of the price)
 
 ## [0.3.0] - 2021-06-15

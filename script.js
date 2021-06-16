@@ -16,8 +16,8 @@ var meltPrice = 1000;
 var autobuyer = false;
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
-var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard", "meltPrice"];
-var defaultList = [5000000, 5000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 1000];
+var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard", "meltPrice", "scaling"];
+var defaultList = [5000000, 5000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 1000, [1.23, 1.33]];
 var saveload = {
   save: function() {
     saveList.forEach(x => window.localStorage.setItem(x, JSON.stringify(window[x])));
@@ -127,8 +127,8 @@ function shop(num, sect) {
     if (num == 2 && cardinals >= shopCost[4]) {
       cardinals -= shopCost[4];
       shopCost[4] = Math.ceil(shopCost[4] * 1.38);
-      scaling[0] *= 0.93;
-      scaling[1] *= 0.93;
+      scaling[0] -= (scaling[0] * 0.93) / 100;
+      scaling[1] -= (scaling[0] * 0.93) / 100;
       bought[4]++;
     }
     if (num == 3 && cardinals >= 100 && !autobuyer) {
