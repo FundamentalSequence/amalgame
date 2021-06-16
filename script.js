@@ -11,11 +11,12 @@ var cardinalGain = 1;
 var visitedBefore = false;
 var shopCost = [10, 1000, 1, 1, 1];
 var bought = [0, 0, 0, 0, 0];
+var meltPrice = 1000;
 var autobuyer = false;
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
-var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard"];
-var defaultList = [5000000, 5000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0];
+var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard", "meltPrice"];
+var defaultList = [5000000, 5000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 1000];
 var saveload = {
   save: function() {
     saveList.forEach(x => window.localStorage.setItem(x, JSON.stringify(window[x])));
@@ -52,12 +53,13 @@ function openTab() {
   tabsCollapse++;
 }
 function update() {
-  ramLeft = ramTotal - (ramTab * tabs);
+  ramLeft = Math.round(ramTotal - (ramTab * tabs));
   get("ramLeft").innerHTML = (ramLeft >= 1000000) ? `${ramLeft / 1000000}MB` : (ramLeft >= 1000) ? `${ramLeft/1000}kB` : `${ramLeft}B`;
   get("tabs").innerHTML = `${tabs} tabs`;
   get("ramTab").innerHTML = `${ramTab}B/tab`;
   get("cardNum").innerHTML = `${cardinals} cardinals`;
   get("bs").innerHTML = `${(bought[0] + (bought[1] * 5)) * ramTab}B/s`;
+  get("melter").innerHTML = `Melt your RAM (${meltPrice} cardinals)`;
   if (ramLeft <= 0 && !collapsing) {
     collapse();
   }
@@ -72,6 +74,9 @@ function update() {
   }
   if (cardinals >= 100) {
     get("cardAutoBuy").style.display = "block";
+  }
+  if (cardinals >= 1000) {
+    get("melter").style.display = "block";
   }
   if (autobuyer) {
     while (tabs >= shopCost[0]) {
@@ -110,22 +115,31 @@ function shop(num, sect) {
       cardinals -= shopCost[2];
       shopCost[2] = Math.ceil(shopCost[2] * 1.38);
       ramTotal = Math.floor(ramTotal * 0.92);
+      bought[2]++;
     }
     if (num == 1 && cardinals >= shopCost[3]) {
       cardinals -= shopCost[3];
       shopCost[3] = Math.ceil(shopCost[3] * 1.38);
       ramTab = Math.ceil(ramTab * 1.25);
+      bought[3]++;
     }
     if (num == 2 && cardinals >= shopCost[4]) {
       cardinals -= shopCost[4];
       shopCost[4] = Math.ceil(shopCost[4] * 1.38);
-      shopCost[0] = Math.ceil(shopCost[0] * 0.9);
-      shopCost[1] = Math.ceil(shopCost[1] * 0.9);
+      shopCost[0] = Math.floor(shopCost[0] * 0.9);
+      shopCost[1] = Math.floor(shopCost[1] * 0.9);
+      bought[4]++;
     }
     if (num == 3 && cardinals >= 100 && !autobuyer) {
       cardinals -= 100;
-      get("cardAutoBuy").style.backgroundColor = "lime";
       autobuyer = true;
+    }
+    if (num == 4 && cardinals >= meltPrice) {
+      cardinals -= meltPrice;
+      meltPrice = Math.ceil(meltPrice * 50);
+      collapse();
+      ramTotal = Math.ceil(ramTotal * 50);
+      cardinalGain = Math.floor(cardinalGain * 50);
     }
   }
 }

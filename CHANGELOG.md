@@ -6,18 +6,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2021-06-15
+### Added
+- RAM melting to increase RAM and collapse rewards
+
+### Fixed
+- Number of cardinal upgrades bought wasn't saved
+
 ## [0.2.3] - 2021-06-15
-## Added
+### Added
 - A byte/second counter to see how fast your RAM is being used
 
 ## [0.2.2] - 2021-06-15
-## Added
+### Added
 - The autobuy upgrade
 
-## Changed
+### Changed
 - Starting RAM (1MB -> 5MB)
 
-## Fixed
+### Fixed
 - Collapsing making all cardinal upgrades have price of undefined
 
 ## [0.2.1] - 2021-06-15
