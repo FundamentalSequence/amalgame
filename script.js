@@ -11,6 +11,7 @@ var cardinalGain = 1;
 var visitedBefore = false;
 var shopCost = [10, 1000, 1, 1, 1];
 var bought = [0, 0, 0, 0, 0];
+var scaling = [1.23, 1.33];
 var meltPrice = 1000;
 var autobuyer = false;
 setInterval(update, 50);
@@ -101,12 +102,12 @@ function shop(num, sect) {
   if (sect == 0) {
     if (num == 0 && tabs >= shopCost[0]) {
       tabs -= shopCost[0];
-      shopCost[0] = Math.ceil(shopCost[0] * 1.23);
+      shopCost[0] = Math.ceil(shopCost[0] * scaling[0]);
       bought[0]++;
     }
     if (num == 1 && tabs >= shopCost[1]) {
       tabs -= shopCost[1];
-      shopCost[1] = Math.ceil(shopCost[1] * 1.33);
+      shopCost[1] = Math.ceil(shopCost[1] * scaling[1]);
       bought[1]++;
     }
   }
@@ -126,8 +127,8 @@ function shop(num, sect) {
     if (num == 2 && cardinals >= shopCost[4]) {
       cardinals -= shopCost[4];
       shopCost[4] = Math.ceil(shopCost[4] * 1.38);
-      shopCost[0] = Math.floor(shopCost[0] * 0.9);
-      shopCost[1] = Math.floor(shopCost[1] * 0.9);
+      scaling[0] *= 0.93;
+      scaling[1] *= 0.93;
       bought[4]++;
     }
     if (num == 3 && cardinals >= 100 && !autobuyer) {
