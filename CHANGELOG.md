@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.6] - 2021-06-17
+### Fixed
+- Collapsing enabling light theme with white text
+
 ## [0.3.5] - 2021-06-16
 ### Changed
 - Starting RAM (5MB -> 2MB)

@@ -181,7 +181,7 @@ function collapse() {
 function uncollapse() {
   get("collapseText").style.display = "none";
   get("menuB").style.display = "block";
-  document.body.style.backgroundColor = "white";
+  document.body.style.backgroundColor = "#292929";
   collapsing = false;
   openSection("ramMenu");
   if (collapsedNum == 1) {
