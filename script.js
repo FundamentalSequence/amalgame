@@ -1,5 +1,5 @@
-var ramLeft = 5000000;
-var ramTotal = 5000000;
+var ramLeft = 2000000;
+var ramTotal = 2000000;
 var ramTab = 50;
 var tabs = 0;
 var tabsCollapse = 0;
@@ -17,7 +17,7 @@ var autobuyer = false;
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
 var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard", "meltPrice", "scaling"];
-var defaultList = [5000000, 5000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 1000, [1.23, 1.33]];
+var defaultList = [2000000, 2000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 1000, [1.23, 1.33]];
 var saveload = {
   save: function() {
     saveList.forEach(x => window.localStorage.setItem(x, JSON.stringify(window[x])));

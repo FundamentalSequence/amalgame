@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.5] - 2021-06-16
+### Changed
+- Starting RAM (5MB -> 2MB)
+
 ## [0.3.4] - 2021-06-16
 ### Added
 - Options menu
@@ -18,8 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Buying decrease upgrade too much causes scaling to go below 0 (ie. prices fall after buying)
 
-### Changed
-- Starting RAM (5MB -> 2MB)
 
 ## [0.3.1] - 2021-06-15
 ### Fixed
