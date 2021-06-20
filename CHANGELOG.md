@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.8] - 2021-06-19
+### Added
+- A function to automatically fix undefined values in arrays
+
+### Removed
+- The save-fix button
+- The fix function
+
 ## [0.3.7] - 2021-06-19
 ### Changed
 - The price of autobuyer (50 -> 25)

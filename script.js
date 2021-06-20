@@ -31,6 +31,7 @@ var saveload = {
       for (x = 0; x < saveList.length; x++) {
         window[saveList[x]] = JSON.parse(window.localStorage.getItem(saveList[x]));
         if (window[saveList[x]] == undefined) { window[saveList[x]] = defaultList[x]; }
+        if (window[saveList[x]].isArray() == true) { for (y = 0; x < window[saveList[x]].length; y++) { if (window[saveList[x]][y] == undefined) { window[saveList[x]][y] = saveList[x][y]; } } }
       }
     }
   },
@@ -46,9 +47,6 @@ var saveload = {
     for (x = 0; x < saveList.length; x++) {
       window[saveList[x]] = defaultList[x];
     }
-  },
-  fix: function() {
-    // fix
   }
 };
 setTimeout(saveload.init, 500);
