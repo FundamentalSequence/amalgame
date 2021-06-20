@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.7] - 2021-06-19
+### Changed
+- The price of autobuyer (50 -> 25)
+- The price of melting (1000 -> 250)
+
 ## [0.3.6] - 2021-06-17
 ### Fixed
 - Collapsing enabling light theme with white text

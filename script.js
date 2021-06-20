@@ -12,7 +12,7 @@ var visitedBefore = false;
 var shopCost = [10, 1000, 1, 1, 1];
 var bought = [0, 0, 0, 0, 0];
 var scaling = [1.23, 1.33];
-var meltPrice = 1000;
+var meltPrice = 250;
 var autobuyer = false;
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
@@ -134,7 +134,7 @@ function shop(num, sect) {
       scaling[1] -= (scaling[0] * 0.93) / 100;
       bought[4]++;
     }
-    if (num == 3 && cardinals >= 100 && !autobuyer) {
+    if (num == 3 && cardinals >= 25 && !autobuyer) {
       cardinals -= 100;
       autobuyer = true;
     }
@@ -157,7 +157,7 @@ function collapse() {
   ramLeft = ramTotal;
   tabs = 0;
   tabsCollapse = 0;
-  if (!get("collapseText") && totCard <= 100) {
+  if (!get("collapseText") && totCard < 51) {
     document.body.style.backgroundColor = "black";
     openSection("cardMenu");
     get("menuB").style.display = "none";
@@ -173,7 +173,7 @@ function collapse() {
     document.body.style.backgroundColor = "black";
     get("collapseText").style.display = "block";
   }
-  if (totCard <= 100) {
+  if (totCard > 50) {
     collapsing = true;
     setTimeout(uncollapse, 3000);
   }
