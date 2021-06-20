@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.9] - 2021-06-20
+### Fixed
+- The prices everywhere
+
 ## [0.3.8] - 2021-06-19
 ### Added
 - A function to automatically fix undefined values in arrays
