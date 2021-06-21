@@ -61,12 +61,12 @@ function update() {
     if (num >= 1000) {return `${(num/1000).toPrecision(3)}KB`}
     return `${num}B`
   }
-  function tabIncome() {return Math.floor((bought[0] + bought[1] * 5) * (cardinals ** 0.5))}
+  function tabIncome() {return Math.floor((bought[0] + bought[1] * 5) * ((cardinals + 1) ** 0.5))}
   ramLeft = Math.round(ramTotal - (ramTab * tabs));
   get("progress").innerHTML = `${tabs} open tab${tabs == 1 ? ` is` : `s are`} using ${pretty(ramTotal - ramLeft)} out of ${pretty(ramTotal)} RAM`;
   get("income").innerHTML = `Opening ${tabIncome()} tabs per second at a cost of ${ramTab} bytes per tab uses ${tabIncome() * ramTab} bytes per second`;
   get("timer").innerHTML = `You will run out of RAM in approximately ${Math.ceil(ramLeft / tabIncome() / ramTab)} seconds`;
-  get("cardNum").innerHTML = `You have collapsed ${collapsedNum} times, and currently have ${cardinals} cardinals`;
+  get("cardNum").innerHTML = `You have ${cardinals} unspent cardinals, which boost your tab production by x${((cardinals + 1) ** 0.5).toPrecision(3)}`;
   get("melter").innerHTML = `Melt your RAM (${meltPrice} cardinals)`;
   if (ramLeft <= 0 && !collapsing) {
     collapse();
