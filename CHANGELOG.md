@@ -10,8 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Presentation
 ### Fixed
-- Autobuyer/Melter buttons remaining hidden until the old price was reached (see 0.3.7)
-- Cardinals only boosting Ctrl+T
+- Autobuyer/Melter buttons remain hidden until the old price is reached (see 0.3.7)
+- Cardinals only boost Ctrl+T
+- Having 0 cardinals multiplies income by 0
 
 ## [0.3.12] - 2021-06-20
 ### Fixed
