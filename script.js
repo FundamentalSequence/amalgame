@@ -55,12 +55,18 @@ function openTab() {
   tabsCollapse++;
 }
 function update() {
+  function pretty(num) {
+    if (num >= 1000000000) {return `${(num/1000).toPrecision(4)}GB`}
+    if (num >= 1000000) {return `${(num/1000).toPrecision(4)}MB`}
+    if (num >= 1000) {return `${(num/1000).toPrecision(3)}KB`}
+    return `${num}B`
+  }
+  function tabIncome() {return Math.floor((bought[0] + bought[1] * 5) * (cardinals ** 0.5))}
   ramLeft = Math.round(ramTotal - (ramTab * tabs));
-  get("ramLeft").innerHTML = (ramLeft >= 1000000) ? `${ramLeft / 1000000}MB` : (ramLeft >= 1000) ? `${ramLeft/1000}kB` : `${ramLeft}B`;
-  get("tabs").innerHTML = `${tabs} tabs`;
-  get("ramTab").innerHTML = `${ramTab}B/tab`;
-  get("cardNum").innerHTML = `${cardinals} cardinals`;
-  get("bs").innerHTML = `${(bought[0] + (bought[1] * 5)) * ramTab}B/s`;
+  get("progress").innerHTML = `${tabs} open tab${tabs == 1 ? ` is` : `s are`} using ${pretty(ramTotal - ramLeft)} out of ${pretty(ramTotal)} RAM`;
+  get("income").innerHTML = `Opening ${tabIncome()} tabs per second at a cost of ${ramTab} bytes per tab uses ${tabIncome() * ramTab} bytes per second`;
+  get("timer").innerHTML = `You will run out of RAM in approximately ${Math.ceil(ramLeft / tabIncome() / ramTab)} seconds`;
+  get("cardNum").innerHTML = `You have collapsed ${collapsedNum} times, and currently have ${cardinals} cardinals`;
   get("melter").innerHTML = `Melt your RAM (${meltPrice} cardinals)`;
   if (ramLeft <= 0 && !collapsing) {
     collapse();
@@ -70,6 +76,9 @@ function update() {
   }
   if (bought[0] >= 10) {
     get("auto1").style.display = "block";
+    if (collapsedNum >= 5) {
+      get("timer").style.display = "block";
+    }
   }
   if (collapsedNum >= 1) {
     get("cardMenuOp").style.display = "inline";
@@ -90,14 +99,14 @@ function update() {
     get("cardAutoBuy").style.backgroundColor = "lime";
     get("cardAutoBuy").innerHTML = `Autobuy tab-openers (Bought)`;
   }
-  get("auto0").innerHTML = `New Tab Button (${shopCost[0]} tabs) (${bought[0]}x)`;
-  get("auto1").innerHTML = `Ctrl+T (${shopCost[1]/1000}k tabs) (${bought[1]}x)`;
-  get("cardUp0").innerHTML = `Decrease RAM (${shopCost[2]} ${shopCost[2] > 1 ? "cardinals" : "cardinal"})`;
-  get("cardUp1").innerHTML = `Increase tab RAM (${shopCost[3]} ${shopCost[3] > 1 ? "cardinals" : "cardinal"})`;
-  get("cardUp2").innerHTML = `Decrease prices (${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"})`;
+  get("auto0").innerHTML = `New Tab Button (${shopCost[0]} tabs) (${bought[0]} owned)`;
+  get("auto1").innerHTML = `Ctrl+T (${shopCost[1]} tabs) (${bought[1]} owned)`;
+  get("cardUp0").innerHTML = `Decrease maximum RAM (${pretty(ramTotal)} -> ${pretty(Math.floor(ramTotal * 0.92))}): ${shopCost[2]} ${shopCost[2] > 1 ? "cardinals" : "cardinal"}`;
+  get("cardUp1").innerHTML = `Increase tab RAM cost (${pretty(ramTab)} -> ${pretty(Math.floor(ramTab * 1.25))}): ${shopCost[3]} ${shopCost[3] > 1 ? "cardinals" : "cardinal"}`;
+  get("cardUp2").innerHTML = `Slower tab cost scaling (x${(0.9907 ** bought[4]).toPrecision(4)} -> x${(0.9907 ** (bought[4]+1)).toPrecision(4)}): ${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"}`;
 }
 function autoTabs() {
-  tabs += Math.floor(bought[0] + (bought[1] * 5) * (cardinals ** 0.5));
+  tabs += Math.floor((bought[0] + (bought[1] * 5)) * (cardinals ** 0.5));
 }
 function shop(num, sect) {
   if (sect == 0) {
