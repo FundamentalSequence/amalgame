@@ -10,6 +10,7 @@
     <div id="menuB">
       <button onclick="openSection('ramMenu')" id="ramMenuOp">RAM</button>
       <button onclick="openSection('cardMenu')" id="cardMenuOp">Cardinals</button>
+      <button onclick="openSection('treeMenu')" id="treeOp">Tree</button>
       <button onclick="openSection('statMenu')" id="statOp">Stats</button>
     </div>
     <div class="menu" id="ramMenu">
@@ -28,11 +29,19 @@
       <button onclick="shop(2, 1)" id="cardUp2">Decrease prices (1 cardinal)</button> <br />
       <button onclick="shop(3, 1)" id="cardAutoBuy">Autobuy tab-openers (25 cardinals)</button>
       <button onclick="shop(4, 1)" id="melter">Melt your RAM (250 cardinals)</button>
+      <button onclick="shop(5, 1)" id="cardPres">Ascend to the next layer (50000 cardinals)</button>
+    </div>
+    <div class="menu" id="treeMenu">
+      <button onclick="tree(0)" id="presTree">P</button>
+      <div class="menu" id="presPmenu">
+        <button id="presPres">Prestige for 0 points</button>
+      </div>
     </div>
     <div class="menu" id="statMenu">
       <p id="totalTabsC">Your total tabs this collapse is 0</p>
       <p id="totalCards">Your total cardinals is 0</p>
       <p id="estTC">Estimated time to collapse: Never</p>
+      <p>Join the <a href="https://discord.gg/tcC5BneA37" target="_blank">discord</a></p>
     </div>
   </body>
 </html>

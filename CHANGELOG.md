@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2021-06-21
+### Added
+- A new layer (tree)
+
+### Fixed
+- The collapse timer saying "Infinitys" (says "Never" instead)
+- Byte counter now only has 3 digits after the decimal
+- The amount of tabs produced by Ctrl+T
+
 ## [0.4.1] - 2021-06-21
 ### Fixed
 - The collapse timer

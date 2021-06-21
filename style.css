@@ -13,13 +13,40 @@ button {
   background-color: rgb(12, 136, 39);
   display: none;
 }
-#cardMenu {
+#treeOp {
+  background-color: rgb(165, 16, 158);
   display: none;
 }
-#optionsMenu {
-  display: none;
+#presTree {
+  background-color: #0ac4f3;
+  border-radius: 100px;
+  border-color: #0ac4f3;
+  border: 5px outset #0caad1;
+  width: 100px;
+  height: 100px;
+  font-weight: 700;
+  font-size: xx-large;
+  color: #5c5c5c;
+  font-family: sans-serif;
 }
-#statMenu {
+#treeMenu {
+  text-align: center;
+  left: 0;
+}
+#presPmenu {
+  right: 0;
+  margin-top: 60px;
+}
+#presPres {
+  font-family: monospace;
+  font-weight: bold;
+  height: 80px;
+  width: 150px;
+  color: #09809e;
+  border: 2px outset #0caad1;
+  background-color: #0ac4f3;
+}
+.menu {
   display: none;
 }
 #auto0 {
@@ -33,4 +60,16 @@ button {
 }
 #melter {
   display: none;
+}
+#cardPres {
+  display: none;
+}
+.split {
+  margin-top: 40px;
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
 }

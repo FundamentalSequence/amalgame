@@ -15,10 +15,11 @@ var scaling = [1.23, 1.33];
 var meltPrice = 250;
 var autobuyer = false;
 var estCollapse = -1;
+var treeUnlocked = false;
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
-var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard", "meltPrice", "scaling"];
-var defaultList = [2000000, 2000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 250, [1.23, 1.33]];
+var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard", "meltPrice", "scaling", "treeUnlocked"];
+var defaultList = [2000000, 2000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 250, [1.23, 1.33], false];
 var saveload = {
   save: function() {
     saveList.forEach(x => localStorage.setItem(x, JSON.stringify(window[x])));
@@ -41,6 +42,7 @@ var saveload = {
   },
   init: function() {
     setTimeout(saveload.activateAutosave, 5000);
+    openSection("ramMenu");
     saveload.load();
     visitedBefore = true;
   },
@@ -51,22 +53,18 @@ var saveload = {
   }
 };
 setTimeout(saveload.init, 500);
-function openTab() {
-  tabs++;
-  tabsCollapse++;
-}
 function update() {
   ramLeft = Math.round(ramTotal - (ramTab * tabs));
-  estCollapse = Math.floor(ramLeft / ((bought[0] + (bought[1] * 5)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5))) / ramTab);
-  get("ramLeft").innerHTML = (ramLeft >= 1000000) ? `${ramLeft / 1000000}MB` : (ramLeft >= 1000) ? `${ramLeft/1000}kB` : `${ramLeft}B`;
+  estCollapse = Math.floor(ramLeft / ((bought[0] + (bought[1] * 10)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5))) / ramTab);
+  get("ramLeft").innerHTML = (ramLeft >= 1000000) ? `${(ramLeft / 1000000).toFixed(3)}MB` : (ramLeft >= 1000) ? `${(ramLeft / 1000).toFixed(3)}kB` : `${ramLeft}B`;
   get("tabs").innerHTML = `${tabs} tabs`;
   get("ramTab").innerHTML = `${ramTab}B/tab`;
   get("cardNum").innerHTML = `${cardinals} cardinals`;
-  get("bs").innerHTML = `${(bought[0] + (bought[1] * 5)) * ramTab}B/s`;
+  get("bs").innerHTML = `${(bought[0] + (bought[1] * 10)) * ramTab}B/s`;
   get("melter").innerHTML = `Melt your RAM (${meltPrice} cardinals)`;
   get("totalCards").innerHTML = `Your total cardinals is ${totCard}`;
   get("totalTabsC").innerHTML = `Your total tabs this collpase is ${tabsCollapse}`;
-  get("estTC").innerHTML = `Estimated time to collapse: ${estCollapse}s`;
+  get("estTC").innerHTML = `Estimated time to collapse: ${estCollapse == Infinity ? "Never" : estCollapse + "s"}`;
   if (ramLeft <= 0 && !collapsing) {
     collapse();
   }
@@ -85,6 +83,12 @@ function update() {
   if (cardinals >= 250) {
     get("melter").style.display = "block";
   }
+  if (cardinals >= 50000) {
+    get("cardPres").style.display = "block";
+  }
+  if (treeUnlocked) {
+    get("treeOp").style.display = "block";
+  }
   if (autobuyer) {
     while (tabs >= shopCost[0]) {
       shop(0, 0);
@@ -101,9 +105,13 @@ function update() {
   get("cardUp1").innerHTML = `Increase tab RAM (${shopCost[3]} ${shopCost[3] > 1 ? "cardinals" : "cardinal"})`;
   get("cardUp2").innerHTML = `Decrease prices (${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"})`;
 }
+function openTab() {
+  tabs++;
+  tabsCollapse++;
+}
 function autoTabs() {
-  tabs += Math.floor((bought[0] + (bought[1] * 5)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)));
-  tabsCollapse += Math.floor((bought[0] + (bought[1] * 5)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)));
+  tabs += Math.floor((bought[0] + (bought[1] * 10)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)));
+  tabsCollapse += Math.floor((bought[0] + (bought[1] * 10)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)));
 }
 function shop(num, sect) {
   if (sect == 0) {
@@ -149,6 +157,10 @@ function shop(num, sect) {
       ramTotal = Math.ceil(ramTotal * 50);
       cardinalGain = Math.floor(cardinalGain * 50);
     }
+    if (num == 5 && cardinals >= 50000) {
+      cardinals -= 50000;
+      treeUnlocked = true;
+    }
   }
 }
 function collapse() {
@@ -192,6 +204,13 @@ function uncollapse() {
     get("cardMenuOp").style.display = "block";
   }
 }
+function tree(sect) {
+  if (sect == 0) {
+    get("presPmenu").style.display = "block";
+    get("presPmenu").className = "menu split";
+    get("treeMenu").className = "menu split";
+  }
+}
 function get(id) {
   return document.getElementById(id);
 }
@@ -205,5 +224,7 @@ function openSection(pageName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].style.backgroundColor = "";
   }
+  get("presPmenu").className = "menu split";
+  get("treeMenu").className = "menu";
   get(pageName).style.display = "block";
 }
