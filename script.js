@@ -76,7 +76,9 @@ function update() {
   }
   if (bought[0] >= 10) {
     get("auto1").style.display = "block";
-    get("timer").style.display = (collapsedNum >= 5) ? "block" : "none";
+  }
+  if (bought[0] >= 10 && collapseNum >= 5) {
+    get("timer").style.display = "block";
   }
   if (collapsedNum >= 1) {
     get("cardMenuOp").style.display = "inline";
