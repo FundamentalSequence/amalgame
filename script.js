@@ -97,7 +97,7 @@ function update() {
   get("cardUp2").innerHTML = `Decrease prices (${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"})`;
 }
 function autoTabs() {
-  tabs += Math.floor(bought[0] + (bought[1] * 5) * (cardinals ** 0.5));
+  tabs += Math.floor(bought[0] + (bought[1] * 5) * (cardinals == 0) ? 1 : (cardinals ** 0.5));
 }
 function shop(num, sect) {
   if (sect == 0) {

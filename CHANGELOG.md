@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.14] - 2021-06-21
+### Fixed
+- Having no cardinals gives you no tab income when buying tab openers
+
 ## [0.3.13] - 2021-06-21
 ### Fixed
 - The buttons for the autobuyer/melter not appearing until their original price
