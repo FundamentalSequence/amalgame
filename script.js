@@ -83,10 +83,10 @@ function update() {
   if (collapsedNum >= 1) {
     get("cardMenuOp").style.display = "inline";
   }
-  if (cardinals >= 100) {
+  if (cardinals >= 25) {
     get("cardAutoBuy").style.display = "block";
   }
-  if (cardinals >= 1000) {
+  if (cardinals >= 250) {
     get("melter").style.display = "block";
   }
   if (autobuyer) {
