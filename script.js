@@ -57,7 +57,7 @@ function openTab() {
 }
 function update() {
   ramLeft = Math.round(ramTotal - (ramTab * tabs));
-  estCollapse = Math.floor(ramLeft / (bought[0] + (bought[1] * 5)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)) / ramTab);
+  estCollapse = Math.floor(ramLeft / ((bought[0] + (bought[1] * 5)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5))) / ramTab);
   get("ramLeft").innerHTML = (ramLeft >= 1000000) ? `${ramLeft / 1000000}MB` : (ramLeft >= 1000) ? `${ramLeft/1000}kB` : `${ramLeft}B`;
   get("tabs").innerHTML = `${tabs} tabs`;
   get("ramTab").innerHTML = `${ramTab}B/tab`;
