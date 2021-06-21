@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.13FS] - 2021-06-21
+### Changed
+- Presentation
+### Fixed
+- Autobuyer/Melter buttons remaining hidden until the old price was reached (see 0.3.7)
+- Cardinals only boosting Ctrl+T
+
 ## [0.3.12] - 2021-06-20
 ### Fixed
 - Collapsing more than once before reloading will display never-ending text for collapse when you have between 50 and 100 cardinals
