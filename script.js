@@ -106,7 +106,7 @@ function update() {
   get("cardUp2").innerHTML = `Slower tab cost scaling (x${(0.9907 ** bought[4]).toPrecision(4)} -> x${(0.9907 ** (bought[4]+1)).toPrecision(4)}): ${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"}`;
 }
 function autoTabs() {
-  tabs += Math.floor((bought[0] + (bought[1] * 5)) * (cardinals ** 0.5));
+  tabs += Math.floor((bought[0] + (bought[1] * 5)) * ((cardinals + 1) ** 0.5));
 }
 function shop(num, sect) {
   if (sect == 0) {
