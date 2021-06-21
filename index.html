@@ -10,10 +10,10 @@
     <div id="menuB">
       <button onclick="openSection('ramMenu')" id="ramMenuOp">RAM</button>
       <button onclick="openSection('cardMenu')" id="cardMenuOp">Cardinals</button>
-      <button onclick="openSection('optionsMenu')" id="optionsOp">Options</button>
+      <button onclick="openSection('statMenu')" id="statOp">Stats</button>
     </div>
     <div class="menu" id="ramMenu">
-      <p id="ramLeft">5MB</p>
+      <p id="ramLeft">2MB</p>
       <p id="bs">0B/s</p>
       <p id="ramTab">50B/tab</p>
       <p id="tabs">0 tabs</p>
@@ -29,7 +29,10 @@
       <button onclick="shop(3, 1)" id="cardAutoBuy">Autobuy tab-openers (25 cardinals)</button>
       <button onclick="shop(4, 1)" id="melter">Melt your RAM (250 cardinals)</button>
     </div>
-    <div class="menu" id="optionsMenu">
+    <div class="menu" id="statMenu">
+      <p id="totalTabsC">Your total tabs this collapse is 0</p>
+      <p id="totalCards">Your total cardinals is 0</p>
+      <p id="estTC">Estimated time to collapse: Never</p>
     </div>
   </body>
 </html>

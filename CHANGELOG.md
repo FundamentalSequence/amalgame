@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2021-06-21
+### Added
+- A statistics menu (seconds until collapse)
+
+### Fixed
+- Load function not fixing broken saves
+- Cardinal boost only boosting the second tab opener
+
 ## [0.3.14] - 2021-06-21
 ### Fixed
 - Having no cardinals gives you no tab income when buying tab openers

@@ -19,6 +19,9 @@ button {
 #optionsMenu {
   display: none;
 }
+#statMenu {
+  display: none;
+}
 #auto0 {
   display: none;
 }

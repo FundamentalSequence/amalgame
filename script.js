@@ -14,24 +14,25 @@ var bought = [0, 0, 0, 0, 0];
 var scaling = [1.23, 1.33];
 var meltPrice = 250;
 var autobuyer = false;
+var estCollapse = -1;
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
 var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "visitedBefore", "shopCost", "bought", "autobuyer", "totCard", "meltPrice", "scaling"];
 var defaultList = [2000000, 2000000, 50, 0, 0, false, 0, 0, 1, false, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 250, [1.23, 1.33]];
 var saveload = {
   save: function() {
-    saveList.forEach(x => window.localStorage.setItem(x, JSON.stringify(window[x])));
+    saveList.forEach(x => localStorage.setItem(x, JSON.stringify(window[x])));
   },
   load: function() {
-    visitedBefore = JSON.parse(window.localStorage.getItem('visitedBefore'));
+    visitedBefore = JSON.parse(localStorage.getItem('visitedBefore'));
     if (visitedBefore == null || visitedBefore == undefined) {
       visitedBefore = false;
     }
     if (visitedBefore) {
       for (x = 0; x < saveList.length; x++) {
-        window[saveList[x]] = JSON.parse(window.localStorage.getItem(saveList[x]));
+        window[saveList[x]] = JSON.parse(localStorage.getItem(saveList[x]));
         if (window[saveList[x]] == undefined) { window[saveList[x]] = defaultList[x]; }
-        if (window[saveList[x]].isArray() == true) { for (y = 0; x < window[saveList[x]].length; y++) { if (window[saveList[x]][y] == undefined) { window[saveList[x]][y] = saveList[x][y]; } } }
+        if (window[saveList[x]].constructor == Array) { for (y = 0; y < window[saveList[x]].length; y++) { if (window[saveList[x]][y] == undefined || window[saveList[x]][y] == null) { window[saveList[x]][y] = defaultList[x][y]; } } }
       }
     }
   },
@@ -56,12 +57,16 @@ function openTab() {
 }
 function update() {
   ramLeft = Math.round(ramTotal - (ramTab * tabs));
+  estCollapse = Math.floor(ramLeft / (bought[0] + (bought[1] * 5)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)) / ramTab);
   get("ramLeft").innerHTML = (ramLeft >= 1000000) ? `${ramLeft / 1000000}MB` : (ramLeft >= 1000) ? `${ramLeft/1000}kB` : `${ramLeft}B`;
   get("tabs").innerHTML = `${tabs} tabs`;
   get("ramTab").innerHTML = `${ramTab}B/tab`;
   get("cardNum").innerHTML = `${cardinals} cardinals`;
   get("bs").innerHTML = `${(bought[0] + (bought[1] * 5)) * ramTab}B/s`;
   get("melter").innerHTML = `Melt your RAM (${meltPrice} cardinals)`;
+  get("totalCards").innerHTML = `Your total cardinals is ${totCard}`;
+  get("totalTabsC").innerHTML = `Your total tabs this collpase is ${tabsCollapse}`;
+  get("estTC").innerHTML = `Estimated time to collapse: ${estCollapse}s`;
   if (ramLeft <= 0 && !collapsing) {
     collapse();
   }
@@ -97,7 +102,8 @@ function update() {
   get("cardUp2").innerHTML = `Decrease prices (${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"})`;
 }
 function autoTabs() {
-  tabs += Math.floor(bought[0] + (bought[1] * 5) * (cardinals == 0) ? 1 : (cardinals ** 0.5));
+  tabs += Math.floor((bought[0] + (bought[1] * 5)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)));
+  tabsCollapse += Math.floor((bought[0] + (bought[1] * 5)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)));
 }
 function shop(num, sect) {
   if (sect == 0) {
