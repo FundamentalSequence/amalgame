@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.12] - 2021-06-20
+### Fixed
+- Collapsing more than once before reloading will display never-ending text for collapse when you have between 50 and 100 cardinals
+
 ## [0.3.11] - 2021-06-20
 ### Fixed
 - Collapsing with less than 50 total cardinals causes the collapse text to never go away

@@ -165,13 +165,13 @@ function collapse() {
     collapsed.setAttribute("style", "color: lime; font-size: 175px; font-family: Comic Sans MS");
     collapsed.setAttribute("id", "collapseText");
     document.body.insertBefore(collapsed, get("ramMenu"));
-  } else if (totCard <= 100) {
+  } else if (totCard < 51) {
     openSection("cardMenu");
     get("menuB").style.display = "none";
     document.body.style.backgroundColor = "black";
     get("collapseText").style.display = "block";
   }
-  if (totCard < 50) {
+  if (totCard < 51) {
     collapsing = true;
     setTimeout(uncollapse, 3000);
   }
