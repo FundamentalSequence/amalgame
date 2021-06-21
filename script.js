@@ -171,7 +171,7 @@ function collapse() {
     document.body.style.backgroundColor = "black";
     get("collapseText").style.display = "block";
   }
-  if (totCard > 50) {
+  if (totCard < 50) {
     collapsing = true;
     setTimeout(uncollapse, 3000);
   }

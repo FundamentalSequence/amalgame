@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.11] - 2021-06-20
+### Fixed
+- Collapsing with less than 50 total cardinals causes the collapse text to never go away
+
 ## [0.3.10] - 2021-06-20
 ### Added
 - Cardinals now boost tab production (cardinals^0.5)
