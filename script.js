@@ -13,14 +13,15 @@ var bought = [0, 0, 0, 0, 0];
 var scaling = [1.23, 1.33];
 var meltPrice = 250;
 var autobuyer = false;
+var autotab = false;
 var estCollapse = -1;
 var treeUnlocked = false;
 var treePoints = [0];
 var treeGain = [0];
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
-var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "shopCost", "bought", "autobuyer", "totCard", "meltPrice", "scaling", "treeUnlocked", "treePoints"/*, "treeGain"*/];
-var defaultList = [2000000, 2000000, 50, 0, 0, false, 0, 0, 1, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 250, [1.23, 1.33], false, [0]];
+var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "shopCost", "bought", "autobuyer", "autotab", "totCard", "meltPrice", "scaling", "treeUnlocked", "treePoints"];
+var defaultList = [2000000, 2000000, 50, 0, 0, false, false, 0, 0, 1, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 250, [1.23, 1.33], false, [0]];
 var saveload = {
   save: function() {
     saveList.forEach(x => localStorage.setItem(x, JSON.stringify(window[x])));
@@ -35,6 +36,10 @@ var saveload = {
     if (treeUnlocked) {
       get("cardPres").style.backgroundColor = "lime";
       get("cardPres").innerHTML = `Ascended to the next layer`;
+    }
+    if (autotab) {
+      get("cardAutoTab").style.backgroundColor = "lime";
+      get("cardAutoTab").innerHTML = `Automatically open tabs (Bought)`;
     }
   },
   activateAutosave: function() {
@@ -114,6 +119,10 @@ function openTab() {
 function autoTabs() {
   tabs += Math.floor((bought[0] + (bought[1] * 10)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)));
   tabsCollapse += Math.floor((bought[0] + (bought[1] * 10)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5)));
+  if (autotab) {
+    tabs += 1;
+    tabsCollapse += 1;
+  }
 }
 function shop(num, sect) {
   if (sect == 0) {
@@ -164,6 +173,12 @@ function shop(num, sect) {
       treeUnlocked = true;
       get("cardPres").style.backgroundColor = "lime";
       get("cardPres").innerHTML = `Ascended to the next layer`;
+    }
+    if (num == 6 && cardinals >= 50 && !autotab) {
+      cardinals -= 50;
+      autotab = true;
+      get("cardAutoTab").style.backgroundColor = "lime";
+      get("cardAutoTab").innerHTML = `Automatically open tabs (Bought)`;
     }
   }
   if (sect == 2) {
@@ -241,7 +256,8 @@ function treePrestige(sect) {
     autobuyer = false;
     get("cardAutoBuy").style.backgroundColor = "white";
     get("cardAutoBuy").innerHTML = `Autobuy tab-openers (25 cardinals)`;
-
+    get("cardAutoTab").style.backgroundColor = "white";
+    get("cardAutoTab").innerHTML = `Automatically open tabs (50 cardinals)`;
   }
 }
 function get(id) {
