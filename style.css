@@ -20,18 +20,18 @@ button {
 #presTree {
   background-color: #0ac4f3;
   border-radius: 100px;
-  border-color: #0ac4f3;
-  border: 5px outset #0caad1;
+  border: 5px solid #0b9ec3;
   width: 100px;
   height: 100px;
   font-weight: 700;
   font-size: xx-large;
-  color: #5c5c5c;
+  color: #2d637e;
   font-family: sans-serif;
 }
 #treeMenu {
   text-align: center;
   left: 0;
+  font-family: monospace;
 }
 #presPmenu {
   right: 0;

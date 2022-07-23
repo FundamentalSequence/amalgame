@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2022-07-23
+### Added
+- The ability to prestige
+- Prestige resets cardinals and RAM
+- Prestige points boost cardinals and RAM
+
+### Changed
+- The appearance of the prestige tree node
+
+### Fixed
+- Total cardinals not being counted
+- Collapse screen still having the other menus
+- Made collapse screen stop showing up after 51 collapses
+
 ## [0.5.0] - 2021-06-21
 ### Added
 - A new layer (tree)
