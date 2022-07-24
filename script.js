@@ -111,7 +111,7 @@ function update() {
     get("cardAutoBuy").style.backgroundColor = "lime";
     get("cardAutoBuy").innerHTML = `Autobuy tab-openers (Bought)`;
   }
-  treeGain[0] = Math.floor((cardinals / 1000) ** 0.1);
+  treeGain[0] = Math.floor(cardinals ** 0.2);
   get("auto0").innerHTML = `New Tab Button (${shopCost[0]} tabs) (${bought[0]}x)`;
   get("auto1").innerHTML = `Ctrl+T (${shopCost[1]/1000}k tabs) (${bought[1]}x)`;
   get("cardUp0").innerHTML = `Decrease RAM (${shopCost[2]} ${shopCost[2] > 1 ? "cardinals" : "cardinal"})`;

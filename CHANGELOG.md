@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.3] - 2022-07-24
+### Changed
+- The formula for prestige points
+
 ## [0.6.2] - 2022-07-23
 ### Fixed
 - Autosave doesn't turn on if you haven't played before
