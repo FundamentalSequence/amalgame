@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.4] - 2022-07-24
+### Added
+- Liquid RAM
+
+### Fixed
+- Prestige resets auto tab openers too
+- Loading a save after a big update replaces new data with null
+- Tree layer doesn't show up after reload
+
 ## [0.6.3] - 2022-07-24
 ### Changed
 - The formula for prestige points

@@ -18,10 +18,11 @@ var estCollapse = -1;
 var treeUnlocked = false;
 var treePoints = [0];
 var treeGain = [0];
+var liquidram = 0;
 setInterval(update, 50);
 setInterval(autoTabs, 1000);
-var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "shopCost", "bought", "autobuyer", "autotab", "totCard", "meltPrice", "scaling", "treeUnlocked", "treePoints"];
-var defaultList = [2000000, 2000000, 50, 0, 0, false, false, 0, 0, 1, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, 0, 250, [1.23, 1.33], false, [0]];
+var saveList = ["ramLeft", "ramTotal", "ramTab", "tabs", "tabsCollapse", "collapsing", "collapsedNum", "cardinals", "cardinalGain", "shopCost", "bought", "autobuyer", "autotab", "totCard", "meltPrice", "scaling", "treeUnlocked", "treePoints", "liquidram"];
+var defaultList = [2000000, 2000000, 50, 0, 0, false, 0, 0, 1, [10, 1000, 1, 1, 1], [0, 0, 0, 0, 0], false, false, 0, 250, [1.23, 1.33], false, [0], 0];
 var saveload = {
   save: function() {
     saveList.forEach(x => localStorage.setItem(x, JSON.stringify(window[x])));
@@ -29,14 +30,14 @@ var saveload = {
   load: function() {
     try {
       for (x = 0; x < saveList.length; x++) {
-      window[saveList[x]] = JSON.parse(localStorage.getItem(saveList[x]));
-      if (window[saveList[x]].constructor == Array) {
-        for (y = 0; y < window[saveList[x]].length; y++) {
-          if (window[saveList[x]][y] == undefined || window[saveList[x]][y] == null) { window[saveList[x]][y] = defaultList[x][y]; 
+        window[saveList[x]] = JSON.parse(localStorage.getItem(saveList[x]));
+        if (window[saveList[x]] == undefined || window[saveList[x]] == null) { window[saveList[x]] = defaultList[x]; }
+        if (window[saveList[x]].constructor == Array) {
+          for (y = 0; y < window[saveList[x]].length; y++) {
+            if (window[saveList[x]][y] == undefined || window[saveList[x]][y] == null) { window[saveList[x]][y] = defaultList[x][y]; 
+            } 
           } 
-        } 
-      }
-      if (window[saveList[x]] == undefined || window[saveList[x] == null]) { window[saveList[x]] = defaultList[x]; }
+        }
       }
     } catch (error) {
       console.warn("why didnt it work...");
@@ -44,6 +45,7 @@ var saveload = {
     if (treeUnlocked) {
       get("cardPres").style.backgroundColor = "lime";
       get("cardPres").innerHTML = `Ascended to the next layer`;
+      get("treeOp").style.display = "inline";
     }
     if (autotab) {
       get("cardAutoTab").style.backgroundColor = "lime";
@@ -114,11 +116,12 @@ function update() {
   treeGain[0] = Math.floor(cardinals ** 0.2);
   get("auto0").innerHTML = `New Tab Button (${shopCost[0]} tabs) (${bought[0]}x)`;
   get("auto1").innerHTML = `Ctrl+T (${shopCost[1]/1000}k tabs) (${bought[1]}x)`;
-  get("cardUp0").innerHTML = `Decrease RAM (${shopCost[2]} ${shopCost[2] > 1 ? "cardinals" : "cardinal"})`;
-  get("cardUp1").innerHTML = `Increase tab RAM (${shopCost[3]} ${shopCost[3] > 1 ? "cardinals" : "cardinal"})`;
-  get("cardUp2").innerHTML = `Decrease prices (${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"})`;
-  get("presPres").innerHTML = `Prestige for ${treeGain[0]} ${treeGain[0] > 1 ? "points" : "point"}`;
-  get("presPcount").innerHTML = `You have ${treePoints[0]} prestige ${treePoints[0] > 1 ? "points" : "point"}`;
+  get("cardUp0").innerHTML = `Decrease RAM (${shopCost[2]} ${shopCost[2] != 1 ? "cardinals" : "cardinal"})`;
+  get("cardUp1").innerHTML = `Increase tab RAM (${shopCost[3]} ${shopCost[3] != 1 ? "cardinals" : "cardinal"})`;
+  get("cardUp2").innerHTML = `Decrease prices (${shopCost[4]} ${shopCost[4] != 1 ? "cardinals" : "cardinal"})`;
+  get("presPres").innerHTML = `Prestige for ${treeGain[0]} ${treeGain[0] != 1 ? "points" : "point"}`;
+  get("presPcount").innerHTML = `You have ${treePoints[0]} prestige ${treePoints[0] != 1 ? "points" : "point"}`;
+  get("liquid").innerHTML = `${liquidram} liquid RAM`;
 }
 function openTab() {
   tabs++;
@@ -175,6 +178,7 @@ function shop(num, sect) {
       collapse();
       ramTotal = Math.ceil(ramTotal * 50);
       cardinalGain = Math.floor(cardinalGain * 50);
+      liquidram++;
     }
     if (num == 5 && cardinals >= 50000 && !treeUnlocked) {
       cardinals -= 50000;
@@ -264,6 +268,7 @@ function treePrestige(sect) {
     autobuyer = false;
     get("cardAutoBuy").style.backgroundColor = "white";
     get("cardAutoBuy").innerHTML = `Autobuy tab-openers (25 cardinals)`;
+    autotab = false;
     get("cardAutoTab").style.backgroundColor = "white";
     get("cardAutoTab").innerHTML = `Automatically open tabs (50 cardinals)`;
   }
