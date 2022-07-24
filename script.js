@@ -27,11 +27,19 @@ var saveload = {
     saveList.forEach(x => localStorage.setItem(x, JSON.stringify(window[x])));
   },
   load: function() {
-    for (x = 0; x < saveList.length; x++) {
+    try {
+      for (x = 0; x < saveList.length; x++) {
       window[saveList[x]] = JSON.parse(localStorage.getItem(saveList[x]));
-      if (window[saveList[x]].constructor == Array) { for (y = 0; y < window[saveList[x]].length; y++) { if (window[saveList[x]][y] == undefined || window[saveList[x]][y] == null) { window[saveList[x]][y] = defaultList[x][y]; } } 
-    }
+      if (window[saveList[x]].constructor == Array) {
+        for (y = 0; y < window[saveList[x]].length; y++) {
+          if (window[saveList[x]][y] == undefined || window[saveList[x]][y] == null) { window[saveList[x]][y] = defaultList[x][y]; 
+          } 
+        } 
+      }
       if (window[saveList[x]] == undefined || window[saveList[x] == null]) { window[saveList[x]] = defaultList[x]; }
+      }
+    } catch (error) {
+      console.warn("why didnt it work...");
     }
     if (treeUnlocked) {
       get("cardPres").style.backgroundColor = "lime";

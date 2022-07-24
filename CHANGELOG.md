@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.6.1] -2022-07-23
+## [0.6.2] - 2022-07-23
+### Fixed
+- Autosave doesn't turn on if you haven't played before
+
+## [0.6.1] - 2022-07-23
 ### Added
 - Auto tab opener
 
