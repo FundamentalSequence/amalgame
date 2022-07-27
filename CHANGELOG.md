@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - The look of the cardinal upgrade buttons
 
+### Added
+- Some QOL features
+
 ## [0.6.6] - 2022-07-26
 ### Fixed
 - The buttons displaying before they're supposed to

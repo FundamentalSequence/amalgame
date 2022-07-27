@@ -69,12 +69,11 @@ var saveload = {
 setTimeout(saveload.init, 500);
 function update() {
   function pretty(num) {
-    if (num >= 1000000000) {return `${(num/1000000000).toPrecision(4)}GB`}
-    if (num >= 1000000) {return `${(num/1000000).toPrecision(4)}MB`}
-    if (num >= 1000) {return `${(num/1000).toPrecision(3)}KB`}
-    return `${num}B`
+    if (num >= 1000000000) {return `${(num/1000000000).toPrecision(4)}GB`; }
+    if (num >= 1000000) {return `${(num/1000000).toPrecision(4)}MB`; }
+    if (num >= 1000) {return `${(num/1000).toPrecision(3)}kB`; }
+    return `${num}B`;
   }
-  function tabIncome() {return Math.floor((bought[0] + bought[1] * 5) * ((cardinals + 1) ** 0.5))}
   ramLeft = Math.round(ramTotal - (ramTab * tabs));
   estCollapse = Math.floor(ramLeft / (((bought[0] + (bought[1] * 10)) * ((cardinals == 0) ? 1 : (cardinals ** 0.5))) * ramTab));
   get("ramLeft").innerHTML = (ramLeft >= 1000000) ? `${(ramLeft / 1000000).toFixed(3)}MB` : (ramLeft >= 1000) ? `${(ramLeft / 1000).toFixed(3)}kB` : `${ramLeft}B`;
@@ -95,16 +94,10 @@ function update() {
   if (bought[0] >= 10) {
     get("auto1").style.display = "block";
   }
-  if (bought[0] >= 10 && collapseNum >= 5) {
-    get("timer").style.display = "block";
-  }
   if (collapsedNum >= 1) {
     get("cardMenuOp").style.display = "inline";
   }
-  if (cardinals >= 25) {
-    get("cardAutoBuy").style.display = "block";
-  }
-  if (cardinals >= 250) {
+  if (cardinals >= 100) {
     get("melter").style.display = "block";
   }
   if (cardinals >= 50000) {
@@ -129,9 +122,9 @@ function update() {
   // get("cardUp0").innerHTML = `Decrease RAM (${shopCost[2]} ${shopCost[2] != 1 ? "cardinals" : "cardinal"})`;
   // get("cardUp1").innerHTML = `Increase tab RAM (${shopCost[3]} ${shopCost[3] != 1 ? "cardinals" : "cardinal"})`;
   // get("cardUp2").innerHTML = `Decrease prices (${shopCost[4]} ${shopCost[4] != 1 ? "cardinals" : "cardinal"})`;
-  get("cardUp0").innerHTML = `Decrease maximum RAM (${pretty(ramTotal)} -> ${pretty(Math.floor(ramTotal * 0.92))}): ${shopCost[2]} ${shopCost[2] > 1 ? "cardinals" : "cardinal"}`;
-  get("cardUp1").innerHTML = `Increase tab RAM cost (${pretty(ramTab)} -> ${pretty(Math.floor(ramTab * 1.25))}): ${shopCost[3]} ${shopCost[3] > 1 ? "cardinals" : "cardinal"}`;
-  get("cardUp2").innerHTML = `Slower tab cost scaling (x${(0.9907 ** bought[4]).toPrecision(4)} -> x${(0.9907 ** (bought[4]+1)).toPrecision(4)}): ${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"}`;
+  get("cardUp0").innerHTML = `Decrease maximum RAM: ${shopCost[2]} ${shopCost[2] > 1 ? "cardinals" : "cardinal"} <br /><br /> (${pretty(ramTotal)} -> ${pretty(Math.floor(ramTotal * 0.92))})`;
+  get("cardUp1").innerHTML = `Increase tab RAM use: ${shopCost[3]} ${shopCost[3] > 1 ? "cardinals" : "cardinal"} <br /><br /> (${pretty(ramTab)} -> ${pretty(Math.floor(ramTab * 1.25))})`;
+  get("cardUp2").innerHTML = `Slower tab cost scaling: ${shopCost[4]} ${shopCost[4] > 1 ? "cardinals" : "cardinal"} <br /><br /> (x${(0.9907 ** bought[4]).toPrecision(4)} -> x${(0.9907 ** (bought[4]+1)).toPrecision(4)})`;
   get("presPres").innerHTML = `Prestige for ${treeGain[0]} ${treeGain[0] != 1 ? "points" : "point"}`;
   get("presPcount").innerHTML = `You have ${treePoints[0]} prestige ${treePoints[0] != 1 ? "points" : "point"}`;
   get("liquid").innerHTML = `${liquidram} liquid RAM`;
@@ -223,8 +216,8 @@ function collapse() {
   tabsCollapse = 0;
   if (!get("collapseText") && totCard < 51) {
     document.body.style.backgroundColor = "black";
-    openSection("cardMenu");
     get("menuB").style.display = "none";
+    get("cardMenu").style.display = "none";
     let collapsed = document.createElement("p");
     let collapseText = document.createTextNode("YOU HAVE COLLAPSED!");
     collapsed.appendChild(collapseText);
