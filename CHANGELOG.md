@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.6] - 2022-07-26
+### Fixed
+- The buttons displaying before they're supposed to
+
 ## [0.6.5] - 2022-07-26
 ### Added
 - An icon
