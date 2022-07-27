@@ -7,15 +7,56 @@ button {
   border-radius: 8px;
 }
 #ramMenuOp {
-  background-color: darkgray;
+  background-color: rgb(122, 110, 110);
+  font-family: monospace;
+  font-size: 20px;
+  box-shadow: 0px 0px 7px 2px #111111;
+  width: 60px;
+  height: 40px;
+  border: 2px solid #863b3b;
+  cursor: pointer;
+  transition-duration: 0.1s;
+}
+#ramMenuOp:hover {
+  background: #ddd2d2;
+  color: black;
 }
 #cardMenuOp {
-  background-color: rgb(12, 136, 39);
+  font-family: sans-serif;
+  color: lightgreen;
+  background: #000000;
+  border-radius: 5px;
+  border-width: 10px;
+  cursor: pointer;
+  transition-duration: 0.1s;
+  width: 120px;
+  height: 40px;
+  font-size: 15pt;
+  font-weight: bold;
+  border: solid green;
   display: none;
+}
+#cardMenuOp:hover {
+  background: green;
+  color: #FFFFFF;
 }
 #treeOp {
   background-color: rgb(165, 16, 158);
-  display: none;
+  font-family: monospace;
+  font-size: 20px;
+  box-shadow: 0px 0px 7px 2px #111111;
+  width: 60px;
+  height: 40px;
+  border: 2px solid #681a52;
+  transition-duration: 0.1s;
+  cursor: pointer;
+
+}
+#treeOp:hover {
+  background: #cc56aa;
+  color: #FFFFFF;
+  transform: scale(1.1, 1.1);
+  text-shadow: 0px 0px 7px #FFFFFF;
 }
 #presTree {
   background-color: #0ac4f3;
