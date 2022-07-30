@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Amalgame</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css" type="text/css" />
     <script src="script.js"></script>
   </head>
@@ -9,26 +10,42 @@
     <p id="nextFeature"></p>
     <div id="menuB">
       <button onclick="openSection('ramMenu')" id="ramMenuOp">RAM</button>
-      <button onclick="openSection('cardMenu')" id="cardMenuOp">Cardinals</button>
-      <button onclick="openSection('optionsMenu')" id="optionsOp">Options</button>
+      <button onclick="openSection('cardMenu')" id="cardMenuOp">Collapse</button>
+      <button onclick="openSection('treeMenu')" id="treeOp">Tree</button>
+      <button onclick="openSection('statMenu')" id="statOp">Stats</button>
     </div>
     <div class="menu" id="ramMenu">
-      <p id="progress">0 open tabs are using 0B out of 2MB RAM</p>
-      <p id="income">Opening 0 tabs per second at a cost of 0B per second</p>
-      <p id="timer">You will run out of RAM in approximately 0 seconds</p>
+      <p id="ramLeft">2MB</p>
+      <p id="bs">0B/s</p>
+      <p id="ramTab">50B/tab</p>
+      <p id="tabs">0 tabs</p>
       <button onclick="openTab()" id="openTab">Open a Tab</button>
       <button onclick="shop(0, 0)" id="auto0">New Tab Button (10 tabs) (0x)</button>
       <button onclick="shop(1, 0)" id="auto1">Ctrl+T (1000 tabs) (0x)</button>
     </div>
     <div class="menu" id="cardMenu">
       <p id="cardNum">You have 0 unspent cardinals, which boost tab production by x1</p>
-      <button onclick="shop(0, 1)" id="cardUp0">Decrease maximum RAMRAM (2MB -> 1.840MB): 1 cardinal</button>
-      <button onclick="shop(1, 1)" id="cardUp1">Increase tab RAM cost (50B -> 62B): 1 cardinal</button>
-      <button onclick="shop(2, 1)" id="cardUp2">Slower tab cost scaling (x1 -> x0.9907): 1 cardinal</button> <br />
+      <p id="liquid">0 liquid RAM</p>
+      <button onclick="shop(0, 1)" id="cardUp0" class="cardupg">Decrease maximum RAM: 1 cardinal <br /><br /> (2MB -> 1.840MB)</button>
+      <button onclick="shop(1, 1)" id="cardUp1" class="cardupg">Increase tab RAM use: 1 cardinal <br /><br /> (50B -> 62B)</button>
+      <button onclick="shop(2, 1)" id="cardUp2" class="cardupg">Slower tab cost scaling: 1 cardinal <br /><br /> (x1 -> x0.9907)</button> <br />
       <button onclick="shop(3, 1)" id="cardAutoBuy">Autobuy tab-openers (25 cardinals)</button>
+      <button onclick="shop(6, 1)" id="cardAutoTab">Automatically open tabs (50 cardinals)</button>
       <button onclick="shop(4, 1)" id="melter">Melt your RAM (250 cardinals)</button>
+      <button onclick="shop(5, 1)" id="cardPres">Ascend to the next layer (50000 cardinals)</button>
     </div>
-    <div class="menu" id="optionsMenu">
+    <div class="menu" id="treeMenu">
+      <button onclick="tree(0)" id="presTree">P</button>
+      <div class="menu" id="presPmenu">
+        <p id="presPcount">You have 0 prestige points</p>
+        <button id="presPres" onclick="treePrestige(0)">Prestige for 0 points</button>
+      </div>
+    </div>
+    <div class="menu" id="statMenu">
+      <p id="totalTabsC">Your total tabs this collapse is 0</p>
+      <p id="totalCards">Your total cardinals is 0</p>
+      <p id="estTC">Estimated time to collapse: Never</p>
+      <p>Join the <a href="https://discord.gg/tcC5BneA37" target="_blank">discord</a></p>
     </div>
   </body>
 </html>

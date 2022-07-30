@@ -6,13 +6,88 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.3.13FS] - 2021-06-21
+## [0.6.7] - 2022-07-27
 ### Changed
-- Presentation
+- The look of the cardinal upgrade buttons
+
+### Added
+- Some QOL features
+
+## [0.6.6] - 2022-07-26
 ### Fixed
-- Autobuyer/Melter buttons remain hidden until the old price is reached (see 0.3.7)
-- Cardinals only boost Ctrl+T
-- Having 0 cardinals multiplies income by 0
+- The buttons displaying before they're supposed to
+
+## [0.6.5] - 2022-07-26
+### Added
+- An icon
+
+### Changed
+- The look of the menu buttons
+- Renamed Cardinals to Collapse
+
+## [0.6.4] - 2022-07-24
+### Added
+- Liquid RAM
+
+### Fixed
+- Prestige resets auto tab openers too
+- Loading a save after a big update replaces new data with null
+- Tree layer doesn't show up after reload
+
+## [0.6.3] - 2022-07-24
+### Changed
+- The formula for prestige points
+
+## [0.6.2] - 2022-07-23
+### Fixed
+- Autosave doesn't turn on if you haven't played before
+
+## [0.6.1] - 2022-07-23
+### Added
+- Auto tab opener
+
+## [0.6.0] - 2022-07-23
+### Added
+- The ability to prestige
+- Prestige resets cardinals and RAM
+- Prestige points boost cardinals and RAM
+
+### Changed
+- The appearance of the prestige tree node
+
+### Fixed
+- Total cardinals not being counted
+- Collapse screen still having the other menus
+- Made collapse screen stop showing up after 51 collapses
+
+## [0.5.0] - 2021-06-21
+### Added
+- A new layer (tree)
+
+### Fixed
+- The collapse timer saying "Infinitys" (says "Never" instead)
+- Byte counter now only has 3 digits after the decimal
+- The amount of tabs produced by Ctrl+T
+
+## [0.4.1] - 2021-06-21
+### Fixed
+- The collapse timer
+
+## [0.4.0] - 2021-06-21
+### Added
+- A statistics menu (seconds until collapse)
+
+### Fixed
+- Load function not fixing broken saves
+- Cardinal boost only boosting the second tab opener
+
+## [0.3.14] - 2021-06-21
+### Fixed
+- Having no cardinals gives you no tab income when buying tab openers
+
+## [0.3.13] - 2021-06-21
+### Fixed
+- The buttons for the autobuyer/melter not appearing until their original price
 
 ## [0.3.12] - 2021-06-20
 ### Fixed
